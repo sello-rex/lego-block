@@ -1,0 +1,31 @@
+<head>
+  <title>lego-block</title>
+</head>
+<body>
+  {{> x3d}}
+</body>
+<Template name='x3d'>
+  <h2 id='boxes-count'>{{boxesCount}} Boxes</h2>
+  <x3d>
+    <scene>
+      <transform translation='0,0,-0.25' id="surface" data-type='plane'>
+        <shape>
+          <appearance>
+            <material diffuseColor='0.20 0.3 0.7'></material>
+          </appearance>
+          <plane solid='false' size='20 20' center="0,-6.3,0"></plane>
+        </shape>
+      </transform>
+      {{#each legos}}
+        <transform translation="{{coordinates}}">
+          <shape>
+            <appearance>
+              <material diffuseColor='{{color}}'></material>
+            </appearance>
+            <box id="{{_id}}" size='0.5,0.5,0.5' class='lego-block' data-type='lego'></box>
+          </shape>
+        </transform>
+      {{/each}}
+    </scene>
+  </x3d>
+</Template>
