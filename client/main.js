@@ -55,13 +55,7 @@ function addLego(event, onPlane){
 
     let [x, y, z] = event.hitPnt.map(point => Number.parseFloat( point.toFixed(1)) );
 
-    //adjust x,y,z positions to align with the clicked blocked
-    if(z < wz){
-      z = wz;
-    }else if( z > wz ){
-      z = wz + BOX_SIZE;
-    }
-
+    //adjust x,y,z positions to align with the clicked block
     if(wx < x){
       x = wx + BOX_SIZE;
     }else if( wx > x ){
@@ -72,6 +66,14 @@ function addLego(event, onPlane){
       y = wy + BOX_SIZE;
     }else if( wy > y ){
       y = wy - BOX_SIZE;
+    }
+
+    if (z < wz) {
+      z = wz;
+    } else if (z > wz) {
+      x = wx;
+      y = wy;
+      z = wz + BOX_SIZE;
     }
 
     coordinates = [x.toFixed(1), y.toFixed(1), z.toFixed(1)];
